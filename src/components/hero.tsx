@@ -7,52 +7,52 @@ import { useEffect, useState } from "react";
 const slides = [
   {
     image: "/images/hero1.png",
-    eyebrow: "Commercial Electrical Experts",
-    title: "Precision-built electrical systems for ambitious spaces.",
+    eyebrow: "Founded in 1932",
+    title: "Walter J. Barnes Electric for electrical service, safety, and support.",
     description:
-      "A polished hero with layered motion, high contrast lighting, and a premium industrial feel.",
+      "A full-service electrical contractor serving the New Orleans area with project management, safety-first crews, and 24/7 emergency support.",
   },
   {
     image: "/images/hero2.jpg",
-    eyebrow: "Reliable Field Teams",
-    title: "Fast response, clean execution, and safety-first delivery.",
+    eyebrow: "24/7 Emergency Service",
+    title: "Reliable response when the job cannot wait.",
     description:
-      "Smooth transitions and bold copy create the sense of motion you’d expect from a video header.",
+      "The site content highlights emergency availability, estimating support, and a solution-oriented approach.",
   },
   {
     image: "/images/hero3.jpg",
-    eyebrow: "Power + Infrastructure",
-    title: "Built to support complex facilities and demanding projects.",
+    eyebrow: "Project Management",
+    title: "Comprehensive electrical work from planning through completion.",
     description:
-      "The hero cycles through your local images automatically for a living, dynamic feel.",
+      "Barnes Electric is positioned as a specialty contractor for complex commercial and industrial needs.",
   },
   {
     image: "/images/hero4.png",
-    eyebrow: "Project Ready",
-    title: "From planning through installation, every detail stays sharp.",
+    eyebrow: "Safety First",
+    title: "A culture built around electrical and construction safety standards.",
     description:
-      "Soft gradients and motion blur overlays keep the design feeling alive without being distracting.",
+      "The brand places strong emphasis on communication, concern reporting, and a safe work environment.",
   },
   {
     image: "/images/hero5.png",
-    eyebrow: "Industrial Scale",
-    title: "A strong visual system that makes the brand look established.",
+    eyebrow: "Trusted Since 1932",
+    title: "Third-generation family roots with long-term Gulf Coast experience.",
     description:
-      "This is built to feel more like a short branded video than a static banner.",
+      "The company history describes a long-standing family-owned electrical services business.",
   },
   {
     image: "/images/hero6.png",
-    eyebrow: "Service + Support",
-    title: "Professional crews for maintenance, upgrades, and expansion.",
+    eyebrow: "Solutions Oriented",
+    title: "Electrical contracting across complex facilities and sectors.",
     description:
-      "Light movement, fade timing, and layered cards add depth and polish.",
+      "The company profile references commercial, industrial, healthcare, education, transportation, and utility-style work.",
   },
   {
     image: "/images/hero7.png",
-    eyebrow: "Trusted Results",
-    title: "A hero section that gives the site a confident first impression.",
+    eyebrow: "New Orleans Area",
+    title: "Built for clients who need dependable service and project confidence.",
     description:
-      "All visuals are sourced from your local public folder for a fast, dependency-free setup.",
+      "This hero combines the WJBE information with a different design direction for your own site.",
   },
 ];
 
@@ -207,7 +207,8 @@ export function Hero() {
                     </div>
                   </div>
                   <p className="mt-3 max-w-sm text-sm leading-6 text-white/86">
-                    Motion-driven hero using local images from `public/images`.
+                    Motion-driven hero using local images from `public/images`
+                    and WJBE-inspired company information.
                   </p>
                 </div>
               </div>
