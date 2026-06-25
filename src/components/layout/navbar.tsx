@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navigation = [
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Safety", href: "#safety" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Safety", href: "/safety" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export function Navbar() {
