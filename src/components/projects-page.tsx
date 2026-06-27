@@ -4,89 +4,20 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 
-const filters = ["All Projects", "Services & Solutions", "Market"];
-
-const projects = [
-  {
-    location: "Ridgeland, MS",
-    title: "Confidential Client: Duct Bank",
-    image: "/images/hero1.png",
-    desc:
-      "Electrical coordination and infrastructure delivery for a confidential industrial project.",
-  },
-  {
-    location: "Ennis, TX",
-    title: "FreshPet",
-    image: "/images/hero2.jpg",
-    desc:
-      "Essential electrical infrastructure for continuous production and system integration.",
-  },
-  {
-    location: "Peachtree Corners, GA",
-    title: "Intuitive Parking Deck",
-    image: "/images/hero3.jpg",
-    desc:
-      "Electrical, lighting, fire alarm, and EV charging scope for a campus expansion.",
-  },
-  {
-    location: "Russellville, KY",
-    title: "Logan Aluminum",
-    image: "/images/hero4.png",
-    desc:
-      "An active-facility outage upgrade for furnace controls and new raceways/conductors.",
-  },
-  {
-    location: "Guthrie, KY",
-    title: "Novelis",
-    image: "/images/hero5.png",
-    desc:
-      "Power and control systems for large-scale conveyance and process equipment.",
-  },
-  {
-    location: "Perry, GA",
-    title: "Jack Link’s Production Facility",
-    image: "/images/hero6.png",
-    desc:
-      "Preconstruction, electrical installation, and process control work for new production lines.",
-  },
-  {
-    location: "Columbus, MS",
-    title: "Aluminum Dynamics",
-    image: "/images/hero1.png",
-    desc:
-      "Complex systems for aluminum recycling machines and filtration operations.",
-  },
-  {
-    location: "Lebanon, TN",
-    title: "Ferguson Distribution",
-    image: "/images/hero2.jpg",
-    desc:
-      "Electrical installation in a warehouse with elevated work and complex pathways.",
-  },
-  {
-    location: "Clarksville, TN",
-    title: "Confidential Client: Battery Manufacturing Facility",
-    image: "/images/hero3.jpg",
-    desc:
-      "Budget-managed electrical infrastructure for an EV battery production facility.",
-  },
-];
-
-const marketTiles = [
-  "Industrial",
-  "Commercial",
-  "Renewable",
-  "Healthcare",
-  "Science & Tech",
-  "Transportation",
-];
+type ProjectGallery = {
+  id: string;
+  title: string;
+  images: string[];
+};
 
 function Reveal({
   children,
   delay = 0,
+  className = "",
 }: {
   children: ReactNode;
   delay?: number;
+  className?: string;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
@@ -104,7 +35,7 @@ function Reveal({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
+      className={`${className} transition-all duration-700 ease-out ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
       style={{ transitionDelay: `${delay}ms` }}
@@ -114,110 +45,145 @@ function Reveal({
   );
 }
 
-function ProjectCard({
-  location,
-  title,
-  desc,
-  image,
-}: {
-  location: string;
-  title: string;
-  desc: string;
-  image: string;
-}) {
+function ProjectJumpCard({ gallery }: { gallery: ProjectGallery }) {
+  const cover = gallery.images[0];
+
   return (
-    <div className="overflow-hidden rounded-[4px] bg-white shadow-[0_8px_18px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_30px_rgba(0,0,0,0.26)]">
-      <div className="relative h-56 overflow-hidden">
-        <Image src={image} alt={title} fill className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 bg-[rgba(132,145,153,0.55)] px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-white/70">
-          Confidential Project
+    <a
+      href={`#${gallery.id}`}
+      className="group block overflow-hidden rounded-[24px] border border-white/20 bg-white/95 shadow-[0_14px_34px_rgba(0,0,0,0.14)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(0,0,0,0.22)]"
+    >
+      <div className="relative h-64 overflow-hidden">
+        <Image
+          src={cover}
+          alt={gallery.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          className="object-cover object-center transition duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.62))]" />
+        <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-white/12 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
+          {gallery.images.length} Images
+        </div>
+        <div className="absolute inset-x-0 bottom-0 p-5">
+          <div className="rounded-[18px] border border-white/12 bg-black/28 p-4 backdrop-blur-sm transition duration-500 group-hover:bg-black/40">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#b9d5e4]">
+              Project Folder
+            </p>
+            <h2 className="mt-2 text-2xl font-black uppercase leading-tight tracking-[0.06em] text-white">
+              {gallery.title}
+            </h2>
+            <div className="mt-4 flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-white/92">
+              View Gallery
+              <span className="transition duration-300 group-hover:translate-x-1.5">→</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="px-5 py-5">
-        <p className="text-[15px] font-black text-[#2b2f36]">{location}</p>
-        <h3 className="mt-3 min-h-[4rem] text-[1.2rem] font-black leading-7 text-[#2b2f36]">
-          {title}
-        </h3>
-        <p className="mt-6 text-[15px] leading-7 text-[#39444f]">{desc}</p>
-        <div className="mt-8 border-t border-[#d2d8dd] pt-4">
-          <span className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-[#445d75]">
-            Read More
-            <span className="text-[#9cbad0]">→</span>
-          </span>
-        </div>
-      </div>
-    </div>
+    </a>
   );
 }
 
-export function ProjectsPageContent() {
+function ProjectGallerySection({ gallery }: { gallery: ProjectGallery }) {
+  return (
+    <section
+      id={gallery.id}
+      className="rounded-[28px] border border-black/6 bg-white/96 p-5 shadow-[0_18px_50px_rgba(0,0,0,0.08)] sm:p-7 lg:p-8"
+    >
+      <div className="flex flex-col gap-4 border-b border-[#d7dde2] pb-5 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#748596] sm:text-[11px] sm:tracking-[0.34em]">
+            Project Gallery
+          </p>
+          <h2 className="mt-3 text-2xl font-black uppercase leading-tight tracking-[0.06em] text-[#44586a] sm:text-3xl">
+            {gallery.title}
+          </h2>
+        </div>
+        <div className="rounded-full bg-[#eef3f6] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#53697b]">
+          {gallery.images.length} Images
+        </div>
+      </div>
+
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {gallery.images.map((image, index) => (
+          <Reveal key={image} delay={index * 35}>
+            <div className="group overflow-hidden rounded-[16px] border border-black/5 bg-[#eef3f6] shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_30px_rgba(0,0,0,0.14)]">
+              <div className="relative aspect-square overflow-hidden">
+                <Image
+                  src={image}
+                  alt={`${gallery.title} ${index + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover object-center transition duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent" />
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function ProjectsPageContent({
+  galleries,
+}: {
+  galleries: ProjectGallery[];
+}) {
   return (
     <main className="bg-[#7d8991] text-[#2b2f36]">
       <section className="border-b border-[#44586a] bg-[#425565]">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-center gap-14 overflow-x-auto px-4 py-4 text-sm font-bold uppercase tracking-[0.24em] text-white sm:px-6 lg:px-8">
-          {filters.map((filter, index) => (
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-start gap-8 overflow-x-auto px-4 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white sm:justify-center sm:gap-14 sm:px-6 sm:tracking-[0.24em] lg:px-8">
+          {galleries.map((gallery) => (
             <a
-              key={filter}
-              href={`#section-${index}`}
-              className={`whitespace-nowrap transition duration-300 hover:text-[#d8e4ea] ${
-                index === 0 ? "border-b-4 border-[#9ecbd7] pb-1" : ""
-              }`}
+              key={gallery.id}
+              href={`#${gallery.id}`}
+              className="whitespace-nowrap transition duration-300 hover:text-[#d8e4ea]"
             >
-              {filter}
+              {gallery.title}
             </a>
           ))}
-          <span className="ml-4 text-2xl leading-none text-white/95">⌕</span>
         </div>
       </section>
 
-      <section className="px-4 py-8 sm:px-6 lg:px-8">
+      <section className="bg-[#eef3f6] px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-18">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((item, index) => (
-              <Reveal key={item.title} delay={index * 45}>
-                <ProjectCard {...item} />
+          <div className="max-w-4xl px-1 sm:px-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#748596] sm:text-[11px] sm:tracking-[0.36em]">
+              Built Around Real Delivery
+            </p>
+            <h1 className="mt-4 text-[2rem] font-black uppercase leading-[1.06] tracking-[0.06em] text-[#44586a] sm:text-5xl sm:tracking-[0.08em]">
+              Project folders transformed into visual galleries
+            </h1>
+            <p className="mt-4 max-w-5xl text-base leading-7 text-[#31414d] sm:mt-6 sm:text-[19px] sm:leading-9">
+              Each folder from the projects library is shown here by name, with all available
+              images arranged in a clean responsive gallery for easy browsing.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 pb-4 sm:px-6 sm:pb-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {galleries.map((gallery, index) => (
+              <Reveal key={gallery.id} delay={index * 55}>
+                <ProjectJumpCard gallery={gallery} />
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-4 pb-20 pt-4 sm:px-6 lg:px-8">
+      <section className="px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 md:grid-cols-3">
-            {marketTiles.map((item, index) => (
-              <Reveal key={item} delay={index * 50}>
-                <div className="group overflow-hidden rounded-[4px] bg-white shadow-[0_8px_18px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-1">
-                  <div className="relative h-56">
-                    <Image
-                      src={index % 2 === 0 ? "/images/hero5.png" : "/images/hero6.png"}
-                      alt={item}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/5" />
-                    <div className="absolute inset-x-0 bottom-0 bg-[rgba(232,236,239,0.75)] px-4 py-4 text-center text-[#474b4f] backdrop-blur-[2px]">
-                      <p className="text-[1rem] font-black uppercase tracking-[0.2em]">
-                        {item}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+          <div className="grid gap-8">
+            {galleries.map((gallery, index) => (
+              <Reveal key={gallery.id} delay={index * 50}>
+                <ProjectGallerySection gallery={gallery} />
               </Reveal>
             ))}
-          </div>
-
-          <div className="mt-14 flex items-center justify-center gap-3 text-white/90">
-            <span className="uppercase tracking-[0.24em]">Prev</span>
-            <span className="text-xl">‹</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-[#9ecbd7]" />
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span className="text-xl">›</span>
-            <span className="uppercase tracking-[0.24em]">Next</span>
           </div>
         </div>
       </section>

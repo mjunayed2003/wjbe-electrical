@@ -7,63 +7,63 @@ import { useEffect, useRef, useState } from "react";
 
 const principles = [
   {
-    title: "Zero-compromise mindset",
+    title: "Safety",
     copy:
-      "Every project starts with the expectation that safe planning, communication, and execution come first.",
+      "The safety and well-being of not only the Barnes employee, but our subcontractors, our clients, and the public will take precedence over all other goals or project milestones.",
   },
   {
-    title: "Field-led accountability",
+    title: "Vision",
     copy:
-      "Foremen, supervisors, and crews are empowered to raise concerns and protect the job before risk grows.",
+      "Safety is our core focus and value. Each employee has the right and responsibility to take ownership of their personal safety and the safety of all involved in the project.",
   },
   {
-    title: "Client confidence",
+    title: "Quality",
     copy:
-      "Strong safety performance supports reliable schedules, cleaner coordination, and better outcomes on site.",
+      "Barnes Electric strives for an open environment in which new ideas, technical innovation, and continuous improvements occur through lessons-learned meetings.",
   },
 ];
 
 const stats = [
-  { value: "24/7", label: "Safety Awareness" },
-  { value: "100%", label: "Stop Work Authority" },
-  { value: "Daily", label: "Field Planning" },
-  { value: "Ongoing", label: "Training Focus" },
+  { value: "24/7", label: "Emergency Service" },
+  { value: "STOP", label: "Work Authority" },
+  { value: "OSHA 10", label: "Training Focus" },
+  { value: "Zero", label: "Incident Goal" },
 ];
 
 const practices = [
   {
     step: "01",
-    title: "Pre-task planning",
+    title: "Safety standards",
     text:
-      "We review scope, site conditions, tools, and work access before crews begin the task.",
+      "Barnes' commitment to electrical and construction safety standards is reinforced by encouraging safe work practices, regular training, and clear communication.",
   },
   {
     step: "02",
-    title: "Hazard recognition",
+    title: "Membership support",
     text:
-      "Electrical, access, material-handling, and coordination hazards are identified early and discussed clearly.",
+      "Barnes Electric is a member of ISNetworld, Avetta, and BROWZ, reinforcing strong alignment with recognized safety platforms.",
   },
   {
     step: "03",
-    title: "Protective controls",
+    title: "Continuous training",
     text:
-      "Work methods, PPE, barricades, lockout practices, and communication controls are applied to fit the activity.",
+      "Management ensures a culture in which employees have the opportunity for continuous training and support across the organization.",
   },
   {
     step: "04",
-    title: "Review and improve",
+    title: "Ownership and action",
     text:
-      "We capture lessons from the field so teams can adjust quickly and strengthen the next phase of work.",
+      "Every employee has the authority to STOP a job should they determine it is unsafe or direction on a project is unclear.",
   },
 ];
 
 const commitments = [
-  "Open reporting culture",
-  "Craft-specific training",
-  "Jobsite housekeeping discipline",
-  "Supervisor-led field walkthroughs",
-  "Clear emergency readiness",
-  "Shared responsibility across crews",
+  "Open communication and concern reporting",
+  "Safe work practices across every project",
+  "Regular training and improvement reviews",
+  "Employee authority to stop unsafe work",
+  "Health and safety for employees and clients",
+  "Zero incidents as the ongoing goal",
 ];
 
 function Reveal({
@@ -180,13 +180,13 @@ export function SafetyPageContent() {
               </Reveal>
               <Reveal delay={100} direction="left">
                 <h1 className="mt-5 text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  Safety is not a department. It is how every job gets done.
+                  Safety takes precedence over all business pursuits and work practices.
                 </h1>
               </Reveal>
               <Reveal delay={180} direction="left">
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-white/82">
-                  We build our field culture around planning, communication, accountability,
-                  and the confidence to pause work when conditions do not feel right.
+                  Barnes Electric is committed to the health and safety of our employees,
+                  customers, contractors, and the communities in which we work.
                 </p>
               </Reveal>
               <Reveal delay={260}>
@@ -195,14 +195,14 @@ export function SafetyPageContent() {
                     href="/contact"
                     className="rounded-full bg-[#c6932d] px-7 py-3.5 text-sm font-black uppercase tracking-[0.18em] text-[#111822] transition duration-300 hover:-translate-y-0.5 hover:bg-[#d8a33a]"
                   >
-                    Report a Concern
+                    Schedule Service
                   </Link>
-                  <Link
-                    href="/projects"
+                  <a
+                    href="tel:5048351756"
                     className="rounded-full border border-white/20 bg-white/8 px-7 py-3.5 text-sm font-black uppercase tracking-[0.18em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/14"
                   >
-                    View Projects
-                  </Link>
+                    Call 504.835.1756
+                  </a>
                 </div>
               </Reveal>
             </div>
@@ -211,35 +211,43 @@ export function SafetyPageContent() {
           <div className="relative flex items-center justify-center lg:justify-end">
             <Reveal delay={120} direction="right" className="w-full max-w-[560px]">
               <div className="overflow-hidden rounded-[30px] border border-white/15 bg-white/8 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl">
-                <div className="relative h-[360px] overflow-hidden rounded-[24px] sm:h-[470px]">
-                  <Image
-                    src="/images/hero4.png"
-                    alt="Safety-focused field team"
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 560px"
-                    className="object-cover object-center"
-                    style={{
-                      transform: `scale(1.04) translate3d(${xShift * -8}px, ${yShift * -6}px, 0)`,
-                      transition: "transform 0.3s ease-out",
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/70" />
-                  <div className="absolute inset-x-0 bottom-0 p-5">
-                    <div className="rounded-[20px] border border-white/12 bg-black/45 p-5 backdrop-blur-sm">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#d2a447]">
-                        Culture of Care
-                      </p>
-                      <p className="mt-3 text-2xl font-black leading-tight text-white">
-                        Safer planning supports stronger execution.
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-white/78">
-                        Crews, clients, and supervisors all share responsibility for recognizing
-                        hazards early and responding clearly.
-                      </p>
+                <a
+                  href="/images/Safety6.jpg"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block"
+                  aria-label="View safety-focused field team image"
+                >
+                  <div className="relative h-[360px] overflow-hidden rounded-[24px] bg-white sm:h-[470px]">
+                    <Image
+                      src="/images/Safety6.jpg"
+                      alt="Safety-focused field team"
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 560px"
+                      className="object-contain object-center"
+                      style={{
+                        transform: `scale(1.04) translate3d(${xShift * -8}px, ${yShift * -6}px, 0)`,
+                        transition: "transform 0.3s ease-out",
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/70" />
+                    <div className="absolute inset-x-0 bottom-0 p-5">
+                      <div className="rounded-[20px] border border-white/12 bg-black/45 p-5 backdrop-blur-sm">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#d2a447]">
+                          Culture of Care
+                        </p>
+                        <p className="mt-3 text-2xl font-black leading-tight text-white">
+                          Each employee has the authority to stop unsafe work.
+                        </p>
+                        <p className="mt-3 text-sm leading-7 text-white/78">
+                          Zero incidents remains the goal, supported by training, communication,
+                          and a shared responsibility for safe outcomes.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
 
                 <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
                   {stats.map((item, index) => (
@@ -265,8 +273,8 @@ export function SafetyPageContent() {
               The standard is simple: no task is successful unless it is safe.
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#43525e]">
-              Safety performance is built through habits, preparation, and follow-through,
-              not slogans. We design the page around that same clarity.
+              Barnes Electric is a member of ISNetworld, Avetta, and BROWZ, while management
+              reinforces safety standards through training, communication, and accountability.
             </p>
           </Reveal>
 
@@ -292,15 +300,15 @@ export function SafetyPageContent() {
                   Built to support crews before, during, and after the work.
                 </h2>
                 <p className="mt-5 text-[15px] leading-8 text-white/78">
-                  Good safety programs are practical. They help crews think ahead, stay aligned,
-                  and respond fast when jobsite conditions change.
+                  Barnes promotes safe work practices, regular training, and a culture where
+                  employees can communicate concerns, suggestions, and lessons learned.
                 </p>
               </div>
 
               <div className="mt-8 overflow-hidden rounded-[22px] border border-white/10">
                 <div className="relative h-72">
                   <Image
-                    src="/images/hero6.png"
+                    src="/images/Safety4.jpg"
                     alt="Safety planning meeting"
                     fill
                     sizes="(max-width: 1024px) 100vw, 420px"
@@ -312,7 +320,7 @@ export function SafetyPageContent() {
                       Jobsite readiness
                     </p>
                     <p className="mt-2 max-w-sm text-sm leading-7 text-white/82">
-                      Briefings, role clarity, and protective controls reduce confusion before tools ever move.
+                      Each employee has the authority to STOP any job should they determine it unsafe.
                     </p>
                   </div>
                 </div>
@@ -367,7 +375,7 @@ export function SafetyPageContent() {
           <Reveal delay={120} direction="right">
             <div className="relative h-full min-h-[420px] overflow-hidden rounded-[32px] shadow-[0_20px_60px_rgba(15,23,42,0.16)]">
               <Image
-                src="/images/hero5.png"
+                src="/images/Safety5.jpg"
                 alt="Crew working with safety focus"
                 fill
                 sizes="(max-width: 1024px) 100vw, 520px"
@@ -383,12 +391,66 @@ export function SafetyPageContent() {
                     Strong safety culture grows when everyone owns the outcome.
                   </p>
                   <p className="mt-4 text-sm leading-7 text-white/80">
-                    From leadership to field crews, the expectation is clear communication,
-                    respectful intervention, and disciplined follow-through.
+                    Our workforce is the backbone of the company, and the conviction is simple:
+                    all employees should return home safely each day.
                   </p>
                 </div>
               </div>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-[#edf2f4] px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
+          <Reveal direction="left">
+            <a
+              href="/images/Safety5.jpg"
+              target="_blank"
+              rel="noreferrer"
+              className="block relative min-h-[280px] overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_rgba(15,23,42,0.12)]"
+              aria-label="View safety membership detail"
+            >
+              <Image
+                src="/images/Safety5.jpg"
+                alt="Safety membership detail"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#ffd44d]">
+                  Safety 5
+                </p>
+                <p className="mt-2 text-2xl font-black">Membership and support visual</p>
+              </div>
+            </a>
+          </Reveal>
+
+          <Reveal direction="right">
+            <a
+              href="/images/Safety6.jpg"
+              target="_blank"
+              rel="noreferrer"
+              className="block relative min-h-[280px] overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_rgba(15,23,42,0.12)]"
+              aria-label="View safety culture detail"
+            >
+              <Image
+                src="/images/Safety6.jpg"
+                alt="Safety culture detail"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#ffd44d]">
+                  Safety 6
+                </p>
+                <p className="mt-2 text-2xl font-black">Field team and safety focus</p>
+              </div>
+            </a>
           </Reveal>
         </div>
       </section>

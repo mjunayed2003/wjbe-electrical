@@ -124,10 +124,10 @@ function SectionHeading({
   dark?: boolean;
 }) {
   return (
-    <div className="mx-auto max-w-4xl text-center">
+    <div className="mx-auto max-w-4xl px-1 text-center sm:px-4">
       {eyebrow ? (
         <p
-          className={`text-[11px] font-semibold uppercase tracking-[0.34em] ${
+          className={`text-[10px] font-semibold uppercase tracking-[0.28em] sm:text-[11px] sm:tracking-[0.34em] ${
             dark ? "text-white/70" : "text-[#7d8891]"
           }`}
         >
@@ -135,14 +135,14 @@ function SectionHeading({
         </p>
       ) : null}
       <h2
-        className={`mt-4 text-3xl font-black uppercase tracking-[0.12em] sm:text-4xl ${
+        className={`mt-3 text-[1.9rem] font-black uppercase leading-tight tracking-[0.08em] sm:mt-4 sm:text-4xl sm:tracking-[0.12em] ${
           dark ? "text-white" : "text-[#2f3c47]"
         }`}
       >
         {title}
       </h2>
       <p
-        className={`mx-auto mt-5 max-w-3xl text-lg leading-8 sm:text-[19px] ${
+        className={`mx-auto mt-4 max-w-3xl text-base leading-7 sm:mt-5 sm:text-[19px] sm:leading-8 ${
           dark ? "text-white/88" : "text-[#33414b]"
         }`}
       >
@@ -255,7 +255,7 @@ export function ServicesPageContent() {
   return (
     <main className="bg-white text-[#2b2f36]">
       <section className="border-b border-[#d9dee3] bg-[#465968] text-white">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-center gap-12 overflow-x-auto px-4 py-4 text-[13px] font-black uppercase tracking-[0.24em] sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-start gap-8 overflow-x-auto px-4 py-4 text-[12px] font-black uppercase tracking-[0.18em] sm:justify-center sm:gap-12 sm:px-6 sm:text-[13px] sm:tracking-[0.24em] lg:px-8">
           {tabs.map((tab, index) => (
             <a
               key={tab}
@@ -295,17 +295,17 @@ export function ServicesPageContent() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-3 bg-[#3f4f5d]" />
       </section>
 
-      <section className="relative overflow-hidden bg-white px-4 py-20 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-white px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
         <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(90deg,rgba(64,80,92,0.08)_1px,transparent_1px),linear-gradient(rgba(64,80,92,0.08)_1px,transparent_1px)] [background-size:72px_72px]" />
         <div className="mx-auto max-w-7xl">
-          <div className="relative z-10 max-w-4xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.36em] text-[#7e8e9c]">
+          <div className="relative z-10 max-w-4xl px-1 sm:px-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#7e8e9c] sm:text-[11px] sm:tracking-[0.36em]">
               Where vision meets expertise
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-black uppercase leading-[1.08] tracking-[0.08em] text-[#748595] sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-[2rem] font-black uppercase leading-[1.06] tracking-[0.06em] text-[#748595] sm:mt-5 sm:text-5xl sm:tracking-[0.08em]">
               Where vision meets expertise
             </h1>
-            <p className="mt-6 max-w-5xl text-[19px] leading-9 text-[#31414d]">
+            <p className="mt-4 max-w-5xl text-base leading-7 text-[#31414d] sm:mt-6 sm:text-[19px] sm:leading-9">
               Whether working with a single vertical or leveraging strengths across our markets,
               each project allows you the flexibility to select services and solutions unique to
               your project requirements.

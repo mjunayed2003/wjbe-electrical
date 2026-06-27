@@ -62,6 +62,13 @@ const stats = [
   { value: "24/7", label: "Emergency Support" },
 ];
 
+const heroSlides = [
+  "/images/hero5.png",
+  "/images/hero6.png",
+  "/images/hero4.png",
+  "/images/hero7.png",
+];
+
 function Reveal({
   children,
   className = "",
@@ -121,9 +128,18 @@ function StatCard({ value, label }: { value: string; label: string }) {
 }
 
 export function AboutPageContent() {
+  const [heroIndex, setHeroIndex] = useState(0);
   const [pointer, setPointer] = useState({ x: 50, y: 50 });
   const xShift = (pointer.x - 50) / 50;
   const yShift = (pointer.y - 50) / 50;
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setHeroIndex((current) => (current + 1) % heroSlides.length);
+    }, 4500);
+
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
     <main className="bg-white text-[#171717]">
@@ -151,64 +167,94 @@ export function AboutPageContent() {
           <div className="absolute bottom-[10%] left-[40%] h-56 w-56 rounded-full bg-[#1090d7]/8 blur-3xl animate-softPulse [animation-delay:2.4s]" />
         </div>
 
-        <div className="mx-auto w-full max-w-[1700px] px-4 pt-4 sm:px-6 lg:px-8">
-          <div className="relative h-[82vh] min-h-[680px] overflow-hidden rounded-[28px] shadow-[0_32px_90px_rgba(0,0,0,0.18)]">
+        <div className="w-full pt-0">
+          <div className="relative h-[78vh] min-h-[620px] overflow-hidden shadow-[0_32px_90px_rgba(0,0,0,0.18)] sm:h-[82vh] sm:min-h-[680px]">
 
             {/* background image */}
-            <Image
-              src="/images/hero5.png"
-              alt="Workers inside a commercial building"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-              style={{
-                transform: `scale(1.04) translate3d(${xShift * -10}px, ${yShift * -8}px, 0)`,
-                transition: "transform 0.3s ease-out",
-              }}
-            />
+            {heroSlides.map((image, index) => (
+              <Image
+                key={image}
+                src={image}
+                alt="Workers inside a commercial building"
+                fill
+                priority={index === 0}
+                sizes="100vw"
+                className={`object-cover object-center transition-all duration-1000 ease-out ${
+                  index === heroIndex ? "scale-100 opacity-100" : "scale-105 opacity-0"
+                }`}
+                style={{
+                  transform:
+                    index === heroIndex
+                      ? `scale(1.04) translate3d(${xShift * -10}px, ${yShift * -8}px, 0)`
+                      : undefined,
+                  transition:
+                    "transform 0.3s ease-out, opacity 1s ease-out, scale 1s ease-out",
+                }}
+              />
+            ))}
 
             {/* overlays */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/60" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
 
-            {/* floating info card — top-left, only large screens */}
-            <Reveal className="absolute left-[5%] top-[12%] hidden lg:block" direction="left" delay={200}>
-              <div className="w-[260px] rounded-[20px] border border-white/20 bg-[#1090d7] p-7 text-white shadow-[0_20px_60px_rgba(0,0,0,0.22)] backdrop-blur-sm">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">Our focus</p>
-                <p className="mt-2 text-2xl font-black uppercase leading-tight tracking-[0.08em]">Many Markets</p>
-                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80">Individual attention</p>
-                <div className="mt-4 h-px w-full bg-white/20" />
-                <p className="mt-4 text-[13px] leading-6 text-white/85">
-                  Commercial, industrial, and specialized customers served with dependable electrical contracting and a strong safety culture.
-                </p>
-              </div>
-            </Reveal>
+            <div className="pointer-events-none absolute inset-0 mx-auto hidden w-full max-w-7xl px-4 sm:px-6 xl:block xl:px-8">
+              <Reveal className="pointer-events-auto absolute left-8 top-[10%]" direction="left" delay={200}>
+                <div className="w-[260px] rounded-[20px] border border-white/20 bg-[#1090d7] p-7 text-white shadow-[0_20px_60px_rgba(0,0,0,0.22)] backdrop-blur-sm">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">Our focus</p>
+                  <p className="mt-2 text-2xl font-black uppercase leading-tight tracking-[0.08em]">Many Markets</p>
+                  <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80">Individual attention</p>
+                  <div className="mt-4 h-px w-full bg-white/20" />
+                  <p className="mt-4 text-[13px] leading-6 text-white/85">
+                    Commercial, industrial, and specialized customers served with dependable electrical contracting and a strong safety culture.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
 
             {/* bottom accent bars */}
             <div className="absolute inset-x-0 bottom-0 h-[6px] bg-[#1090d7]" />
             <div className="absolute bottom-0 left-0 h-[4px] w-[55%] bg-[#ff9d00]" />
+            <div className="absolute bottom-6 right-4 flex gap-2 sm:right-6 lg:right-8">
+              {heroSlides.map((_, index) => (
+                <span
+                  key={index}
+                  className={`h-2 rounded-full transition-all duration-500 ${
+                    index === heroIndex ? "w-7 bg-white" : "w-2 bg-white/45"
+                  }`}
+                />
+              ))}
+            </div>
 
             {/* hero text card — bottom */}
-            <div className="absolute inset-x-0 bottom-0 px-4 pb-10 lg:left-[8%] lg:bottom-[8%] lg:right-auto lg:px-0">
+            <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-7xl px-4 pb-10 sm:px-6 lg:right-32 lg:bottom-[7%] lg:px-8">
               <Reveal delay={100}>
-                <div className="max-w-[660px] rounded-[26px] border border-white/25 bg-white/90 p-8 shadow-[0_28px_80px_rgba(0,0,0,0.18)] backdrop-blur-md">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.36em] text-[#1090d7]">
+                <div className="ml-auto max-w-[640px] rounded-[28px] border border-white/30 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(244,249,255,0.9))] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.2)] backdrop-blur-md sm:p-8 lg:p-9">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[#1090d7]">
                     About Walter J. Barnes Electric
                   </p>
-                  <h1 className="mt-4 text-4xl font-black leading-[1.1] tracking-tight text-[#0f172a] sm:text-5xl">
+                  <h1 className="mt-4 text-4xl font-black leading-[1.05] tracking-tight text-[#0f172a] sm:text-5xl">
                     Built for projects that need experience, scale, and confidence.
                   </h1>
-                  <p className="mt-5 text-base leading-7 text-[#4b5563] sm:text-[17px]">
+                  <div className="mt-5 h-1 w-20 rounded-full bg-[linear-gradient(90deg,#1090d7,#ff9d00)]" />
+                  <p className="mt-5 max-w-[56ch] text-base leading-7 text-[#4b5563] sm:text-[17px]">
                     Founded in 1932, Walter J. Barnes Electric serves the New Orleans area with full-service electrical contracting, project management, emergency response, and safety-focused field execution.
                   </p>
+                  <div className="mt-7 flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#5a6b79]">
+                    <span className="rounded-full border border-[#1090d7]/18 bg-[#1090d7]/8 px-3 py-2 text-[#1090d7]">
+                      Founded 1932
+                    </span>
+                    <span className="rounded-full border border-[#ff9d00]/18 bg-[#ff9d00]/8 px-3 py-2 text-[#b96f00]">
+                      Safety Focused
+                    </span>
+                  </div>
                 </div>
               </Reveal>
             </div>
           </div>
 
           {/* stats row */}
-          <div className="mx-4 -mt-6 overflow-hidden rounded-[20px] bg-[#2b2d5e] px-6 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.15)] sm:mx-8 lg:mx-12">
+          <div className="mx-auto -mt-6 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="overflow-hidden rounded-[20px] bg-[#2b2d5e] px-6 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {stats.map((s, i) => (
                 <Reveal key={s.label} delay={i * 80} direction="up">
@@ -216,6 +262,7 @@ export function AboutPageContent() {
                 </Reveal>
               ))}
             </div>
+          </div>
           </div>
         </div>
       </section>
