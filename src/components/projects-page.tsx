@@ -129,13 +129,15 @@ function ProjectGallerySection({ gallery }: { gallery: ProjectGallery }) {
 export function ProjectsPageContent({
   galleries,
 }: {
-  galleries: ProjectGallery[];
+  galleries?: ProjectGallery[];
 }) {
+  const safeGalleries = galleries ?? [];
+
   return (
     <main className="bg-[#7d8991] text-[#2b2f36]">
       <section className="border-b border-[#44586a] bg-[#425565]">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-start gap-8 overflow-x-auto px-4 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white sm:justify-center sm:gap-14 sm:px-6 sm:tracking-[0.24em] lg:px-8">
-          {galleries.map((gallery) => (
+          {safeGalleries.map((gallery) => (
             <a
               key={gallery.id}
               href={`#${gallery.id}`}
@@ -167,7 +169,7 @@ export function ProjectsPageContent({
       <section className="px-4 pb-4 sm:px-6 sm:pb-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {galleries.map((gallery, index) => (
+            {safeGalleries.map((gallery, index) => (
               <Reveal key={gallery.id} delay={index * 55}>
                 <ProjectJumpCard gallery={gallery} />
               </Reveal>
@@ -179,7 +181,7 @@ export function ProjectsPageContent({
       <section className="px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8">
-            {galleries.map((gallery, index) => (
+            {safeGalleries.map((gallery, index) => (
               <Reveal key={gallery.id} delay={index * 50}>
                 <ProjectGallerySection gallery={gallery} />
               </Reveal>

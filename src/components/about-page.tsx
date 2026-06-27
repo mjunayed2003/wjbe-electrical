@@ -455,6 +455,7 @@ export function AboutPageContent() {
               src="/images/hero4.png"
               alt="Company leadership"
               fill
+              sizes="(max-width: 1024px) 100vw, 60vw"
               className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/15" />

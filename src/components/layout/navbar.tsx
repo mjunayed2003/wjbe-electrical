@@ -13,7 +13,8 @@ const navigation = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-const planRoomHref = "/contact";
+const planRoomHref =
+  "https://www.dropbox.com/scl/fo/n1he026ssayq6wlc3a5v9/AMd63XTaLxdpeNQSZvX79oU?rlkey=gwu3talcf1g1zpsd8gwpm44uk&e=1&dl=0";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -74,6 +75,8 @@ export function Navbar() {
             </nav>
             <Link
               href={planRoomHref}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex rounded-full bg-[#ffd44d] px-5 py-2.5 text-sm font-bold uppercase tracking-[0.16em] text-[#16222f] shadow-[0_10px_24px_rgba(255,212,77,0.24)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#ffe27b]"
             >
               Plan Room
@@ -118,6 +121,8 @@ export function Navbar() {
         <nav className="relative z-10 mx-auto flex w-full max-w-7xl flex-col px-4 py-3 sm:px-6 lg:px-8">
           <Link
             href={planRoomHref}
+            target="_blank"
+            rel="noreferrer"
             className="mb-2 rounded-full bg-[#ffd44d] px-4 py-3 text-center text-sm font-bold uppercase tracking-[0.16em] text-[#16222f] transition duration-300 hover:bg-[#ffe27b]"
             onClick={() => setOpen(false)}
           >

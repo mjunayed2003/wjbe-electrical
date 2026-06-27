@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { ReactNode, FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
 const inquiryOptions = [
@@ -22,11 +22,7 @@ const serviceHighlights = [
   "Emergency service",
 ];
 
-const quickFacts = [
-  "Founded in 1932",
-  "New Orleans Area",
-  "24/7 Contact",
-];
+const quickFacts = ["Founded in 1932", "New Orleans Area", "24/7 Contact"];
 
 const supportCards = [
   {
@@ -60,6 +56,28 @@ const responseItems = [
     value: "Founded in 1932, New Orleans Area, 24/7 Contact",
   },
 ];
+
+type ContactFormState = {
+  inquiry: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  title: string;
+  company: string;
+  message: string;
+};
+
+const initialFormState: ContactFormState = {
+  inquiry: inquiryOptions[0],
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  title: "",
+  company: "",
+  message: "",
+};
 
 function Reveal({
   children,
@@ -100,14 +118,20 @@ function Reveal({
 
 function Field({
   placeholder,
+  value,
+  onChange,
   className = "",
 }: {
   placeholder: string;
+  value: string;
+  onChange: (value: string) => void;
   className?: string;
 }) {
   return (
     <input
       type="text"
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
       placeholder={placeholder}
       className={`h-14 w-full border border-[#d9dde3] bg-white px-5 text-[15px] text-[#31507d] outline-none transition duration-300 placeholder:text-[#4f678b] focus:border-[#0f4db6] ${className}`}
     />
@@ -115,6 +139,49 @@ function Field({
 }
 
 export function ContactPageContent() {
+  const [form, setForm] = useState<ContactFormState>(initialFormState);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
+    "idle",
+  );
+  const [feedback, setFeedback] = useState("");
+
+  const updateField = (field: keyof ContactFormState, value: string) => {
+    setForm((current) => ({ ...current, [field]: value }));
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("sending");
+    setFeedback("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = (await response.json()) as
+        | { message?: string; error?: string }
+        | undefined;
+
+      if (!response.ok) {
+        throw new Error(data?.error ?? "Something went wrong while sending.");
+      }
+
+      setStatus("success");
+      setFeedback(data?.message ?? "Message sent successfully.");
+      setForm(initialFormState);
+    } catch (error) {
+      setStatus("error");
+      setFeedback(
+        error instanceof Error ? error.message : "Unable to send the form right now.",
+      );
+    }
+  };
+
   return (
     <main className="bg-[#f1f2f4] text-[#24364e]">
       <section className="px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
@@ -182,7 +249,7 @@ export function ContactPageContent() {
                   ))}
                 </div>
 
-              <div className="mt-10 border-l-4 border-[#0f4db6] pl-5">
+                <div className="mt-10 border-l-4 border-[#0f4db6] pl-5">
                   <p className="text-[13px] uppercase tracking-[0.08em] text-[#0f4db6]">
                     Core Services
                   </p>
@@ -224,42 +291,83 @@ export function ContactPageContent() {
                   <p className="text-[13px] text-[#55657a]">*Required Field</p>
                 </div>
 
-                <form className="mt-6 space-y-4">
-                  <select className="h-14 w-full border border-[#d9dde3] bg-white px-5 text-[15px] text-[#4f678b] outline-none transition duration-300 focus:border-[#0f4db6]">
+                <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+                  <select
+                    value={form.inquiry}
+                    onChange={(event) => updateField("inquiry", event.target.value)}
+                    className="h-14 w-full border border-[#d9dde3] bg-white px-5 text-[15px] text-[#4f678b] outline-none transition duration-300 focus:border-[#0f4db6]"
+                  >
                     {inquiryOptions.map((option) => (
                       <option key={option}>{option}</option>
                     ))}
                   </select>
 
                   <div className="grid gap-4 md:grid-cols-2">
-                    <Field placeholder="First Name*" />
-                    <Field placeholder="Last Name*" />
+                    <Field
+                      placeholder="First Name*"
+                      value={form.firstName}
+                      onChange={(value) => updateField("firstName", value)}
+                    />
+                    <Field
+                      placeholder="Last Name*"
+                      value={form.lastName}
+                      onChange={(value) => updateField("lastName", value)}
+                    />
                   </div>
 
                   <div className="grid gap-4 md:grid-cols-2">
-                    <Field placeholder="Email*" />
-                    <Field placeholder="Phone*" />
+                    <Field
+                      placeholder="Email*"
+                      value={form.email}
+                      onChange={(value) => updateField("email", value)}
+                    />
+                    <Field
+                      placeholder="Phone*"
+                      value={form.phone}
+                      onChange={(value) => updateField("phone", value)}
+                    />
                   </div>
 
                   <div className="grid gap-4 md:grid-cols-2">
-                    <Field placeholder="Title / Role" />
-                    <Field placeholder="Company" />
+                    <Field
+                      placeholder="Title / Role"
+                      value={form.title}
+                      onChange={(value) => updateField("title", value)}
+                    />
+                    <Field
+                      placeholder="Company"
+                      value={form.company}
+                      onChange={(value) => updateField("company", value)}
+                    />
                   </div>
 
                   <textarea
                     rows={8}
+                    value={form.message}
+                    onChange={(event) => updateField("message", event.target.value)}
                     placeholder="Message*"
                     className="w-full border border-[#d9dde3] bg-white px-5 py-5 text-[15px] text-[#31507d] outline-none transition duration-300 placeholder:text-[#4f678b] focus:border-[#0f4db6]"
                   />
 
                   <div className="pt-2">
-                    <a
-                      href="mailto:info@wjbe.com?subject=Request%20For%20Information"
-                      className="inline-flex bg-[#1246a8] px-7 py-4 text-sm font-semibold uppercase tracking-[0.08em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#0d3d92]"
+                    <button
+                      type="submit"
+                      disabled={status === "sending"}
+                      className="inline-flex bg-[#1246a8] px-7 py-4 text-sm font-semibold uppercase tracking-[0.08em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#0d3d92] disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                      Submit
-                    </a>
+                      {status === "sending" ? "Sending..." : "Submit"}
+                    </button>
                   </div>
+
+                  {feedback ? (
+                    <p
+                      className={`text-sm font-medium ${
+                        status === "success" ? "text-emerald-700" : "text-red-700"
+                      }`}
+                    >
+                      {feedback}
+                    </p>
+                  ) : null}
                 </form>
 
                 <div className="mt-10 grid gap-4 md:grid-cols-3">
