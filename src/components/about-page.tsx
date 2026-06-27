@@ -278,7 +278,7 @@ export function AboutPageContent() {
             From planning and coordination through installation, maintenance, and emergency response — one team, full capability.
           </p>
           <a
-            href="#services"
+            href="/services"
             className="mt-8 inline-flex items-center gap-2 rounded-sm bg-[#f97316] px-7 py-3.5 text-sm font-bold uppercase tracking-[0.2em] text-white shadow-[0_4px_20px_rgba(249,115,22,0.28)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#ea6c10] hover:shadow-[0_8px_28px_rgba(249,115,22,0.36)]"
           >
             View Our Services
@@ -420,7 +420,7 @@ export function AboutPageContent() {
               Barnes Electric&apos;s story centers on long-term service, dependable project delivery, and a team that can support complex work across multiple sectors.
             </p>
             <a
-              href="#contact"
+              href="/contact"
               className="mt-8 inline-flex w-fit items-center gap-2 rounded-sm bg-[#f97316] px-7 py-3.5 text-sm font-bold uppercase tracking-[0.2em] text-white shadow-[0_4px_20px_rgba(249,115,22,0.25)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#ea6c10]"
             >
               Contact Us
@@ -559,7 +559,7 @@ export function AboutPageContent() {
               </div>
             </div>
             <a
-              href="#contact"
+              href="/contact"
               className="mt-8 inline-flex w-fit items-center gap-2 rounded-sm border border-white/30 px-6 py-3 text-sm font-bold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white/15 hover:-translate-y-0.5"
             >
               Get in touch

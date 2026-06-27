@@ -144,13 +144,13 @@ export function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center gap-4 animate-[fadeUp_1100ms_ease-out_both]">
               <a
-                href="#contact"
+                href="/contact"
                 className="rounded-full bg-[#ffd44d] px-6 py-3 text-sm font-bold uppercase tracking-[0.16em] text-[#14162a] transition duration-300 hover:-translate-y-0.5 hover:bg-[#ffe27b]"
               >
                 Contact Us
               </a>
               <a
-                href="#services"
+                href="/services"
                 className="rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-bold uppercase tracking-[0.16em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/16"
               >
                 View Services

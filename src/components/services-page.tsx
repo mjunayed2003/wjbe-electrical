@@ -31,19 +31,19 @@ const valueAddedCards = [
     title: "Electrical Risk Management",
     image: "/images/hero5.png",
     copy:
-      "Planning, coordination, and risk mitigation that keeps complex electrical work moving with confidence.",
+      "Planning, coordination, and field-ready safety practices that keep electrical work organized and controlled.",
   },
   {
     title: "National Solution Services",
     image: "/images/hero6.png",
     copy:
-      "Support for multi-site programs with consistent execution, standardization, and accountability.",
+      "Support for clients who need consistent electrical service across multiple locations or ongoing programs.",
   },
   {
     title: "Engineer, Procure, Construct",
     image: "/images/hero7.png",
     copy:
-      "Integrated delivery for clients who need a single team to guide the full project lifecycle.",
+      "Integrated delivery that helps align design intent, material procurement, and construction execution.",
   },
 ];
 
@@ -319,7 +319,7 @@ export function ServicesPageContent() {
           <SectionHeading
             eyebrow="Core Services"
             title="Core Services"
-            copy="The foundation of our expertise comes with a dedication to quality and high performance that's unmatched in the industry."
+            copy="Core electrical services delivered with a focus on safety, coordination, quality, and dependable field execution."
             dark
           />
 
@@ -338,7 +338,7 @@ export function ServicesPageContent() {
           <SectionHeading
             eyebrow="Value-Added Services"
             title="Value-Added Services"
-            copy="We redefine what's possible. Our value-added offerings support our customers throughout the lifecycle of their energy assets and beyond."
+            copy="These services support project planning, execution, and long-term electrical system performance."
           />
 
           <div className="mt-16 grid gap-8 lg:grid-cols-3">
@@ -356,7 +356,7 @@ export function ServicesPageContent() {
           <SectionHeading
             eyebrow="Solutions Delivered"
             title="Solutions Delivered"
-            copy="We offer a comprehensive, innovative approach to bring the highest value to our clients."
+            copy="Project solutions built around real jobsite needs, client coordination, and dependable delivery."
           />
 
           <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
@@ -374,7 +374,7 @@ export function ServicesPageContent() {
           <SectionHeading
             eyebrow="Markets Served"
             title="Markets Served"
-            copy="Built to support the needs of industrial, commercial, and specialized clients across a broad range of facilities."
+            copy="Electrical work for industrial, commercial, institutional, and specialized facility environments."
             dark
           />
 
@@ -399,7 +399,7 @@ export function ServicesPageContent() {
               Contact us to learn how our dynamic end-to-end capabilities can benefit you.
             </p>
             <a
-              href="#contact"
+              href="/contact"
               className="mt-10 inline-flex -skew-x-6 rounded-sm bg-[#465968] px-8 py-4 text-sm font-black uppercase tracking-[0.2em] text-white shadow-[0_10px_22px_rgba(0,0,0,0.2)] transition duration-300 hover:-translate-y-1 hover:bg-[#374959]"
             >
               <span className="skew-x-6">Contact Us</span>
